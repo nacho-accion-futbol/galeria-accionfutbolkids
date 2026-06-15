@@ -74,7 +74,7 @@ export default function Home() {
                   }}
                 >
                   <p className={styles.cardDate}>{event.date}</p>
-                  <h3 className={styles.cardTitle}>{event.title}</h3>
+                  <h3 className={styles.cardTitle}>{date.title}</h3>
                 </div>
                 <div className={styles.cardFooter}>
                   <div className={styles.placeholders}>
