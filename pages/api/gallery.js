@@ -16,7 +16,7 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: 'Faltan variables de entorno' });
     }
 
-    const range = 'Hoja1!A1:B100';
+    const range = 'Hoja1!A2:B100';
     const sheetUrl = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
 
     const response = await fetch(sheetUrl);
