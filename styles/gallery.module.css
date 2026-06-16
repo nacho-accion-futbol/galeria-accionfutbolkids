@@ -258,8 +258,10 @@
 }
 
 .photoModalImg {
-  max-width: 90vw;
-  max-height: 80vh;
+  max-width: 95vw;
+  max-height: 85vh;
+  width: auto;
+  height: auto;
   object-fit: contain;
   border-radius: 8px;
 }
