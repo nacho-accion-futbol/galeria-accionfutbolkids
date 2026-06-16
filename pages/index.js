@@ -82,8 +82,22 @@ export default function Home() {
   };
 
   const getFullPhotoUrl = (photo) => {
-    const fileId = photo.id;
-    return `https://drive.google.com/uc?export=view&id=${fileId}`;
+    // Método 1: Usar lh3.googleusercontent.com (servidor de imágenes de Google)
+    if (photo.id) {
+      return `https://lh3.googleusercontent.com/d/${photo.id}`;
+    }
+    
+    // Método 2: Fallback a webContentLink
+    if (photo.webContentLink) {
+      return photo.webContentLink;
+    }
+    
+    // Método 3: Fallback a thumbnailLink
+    if (photo.thumbnailLink) {
+      return photo.thumbnailLink;
+    }
+    
+    return '';
   };
 
   return (
