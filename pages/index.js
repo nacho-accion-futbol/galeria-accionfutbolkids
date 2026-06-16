@@ -82,27 +82,15 @@ export default function Home() {
   };
 
   const getFullPhotoUrl = (photo) => {
-  console.log('📸 Foto completa:', photo); // Debug
-  
-  // Opción 1: webContentLink
-  if (photo.webContentLink) {
-    console.log('✅ Usando webContentLink');
-    return photo.webContentLink;
-  }
-  
-  // Opción 2: usando photo.id
+  // Intenta con múltiples formatos de URL de Google Drive
   if (photo.id) {
-    console.log('✅ Usando photo.id');
-    return `https://drive.google.com/uc?export=view&id=${photo.id}`;
+    // Este es el que funciona para VIEW
+    return `https://drive.google.com/uc?export=view&id=${photo.id}&confirm=t`;
   }
-  
-  // Opción 3: thumbnailLink como fallback
   if (photo.thumbnailLink) {
-    console.log('⚠️ Usando thumbnailLink como fallback');
-    return photo.thumbnailLink;
+    // Reemplaza thumbnail por view
+    return photo.thumbnailLink.replace('=s220', '=s1000').replace('=w220', '=w1000');
   }
-  
-  console.log('❌ No encontré ninguna URL de imagen');
   return '';
 };
   return (
