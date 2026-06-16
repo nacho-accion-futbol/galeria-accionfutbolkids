@@ -82,14 +82,27 @@ export default function Home() {
   };
 
   const getFullPhotoUrl = (photo) => {
-  // Usa directamente webContentLink que es el que viene de Google Drive API
+  console.log('📸 Foto completa:', photo); // Debug
+  
+  // Opción 1: webContentLink
   if (photo.webContentLink) {
+    console.log('✅ Usando webContentLink');
     return photo.webContentLink;
   }
-  // Fallback a thumbnailLink si webContentLink no existe
+  
+  // Opción 2: usando photo.id
+  if (photo.id) {
+    console.log('✅ Usando photo.id');
+    return `https://drive.google.com/uc?export=view&id=${photo.id}`;
+  }
+  
+  // Opción 3: thumbnailLink como fallback
   if (photo.thumbnailLink) {
+    console.log('⚠️ Usando thumbnailLink como fallback');
     return photo.thumbnailLink;
   }
+  
+  console.log('❌ No encontré ninguna URL de imagen');
   return '';
 };
   return (
