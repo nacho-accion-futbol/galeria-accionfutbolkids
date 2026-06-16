@@ -82,17 +82,10 @@ export default function Home() {
   };
 
   const getFullPhotoUrl = (photo) => {
-  // Intenta con múltiples formatos de URL de Google Drive
-  if (photo.id) {
-    // Este es el que funciona para VIEW
-    return `https://drive.google.com/uc?export=view&id=${photo.id}&confirm=t`;
-  }
-  if (photo.thumbnailLink) {
-    // Reemplaza thumbnail por view
-    return photo.thumbnailLink.replace('=s220', '=s1000').replace('=w220', '=w1000');
-  }
-  return '';
-};
+    const fileId = photo.id;
+    return `https://drive.google.com/uc?export=view&id=${fileId}`;
+  };
+
   return (
     <div className={styles.container}>
       <header className={styles.header}>
