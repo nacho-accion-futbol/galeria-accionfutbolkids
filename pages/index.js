@@ -119,7 +119,7 @@ export default function Home() {
                 {photos.map((photo, index) => (
                   <div key={index} className={styles.photoItem}>
                     <img
-                      src={selectedPhoto?.webContentLink + '&export=download'}
+                      src={photo.thumbnailLink}
                       alt={photo.name}
                       className={styles.photoImg}
                       loading="lazy"
