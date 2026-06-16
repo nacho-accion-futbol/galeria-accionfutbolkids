@@ -82,10 +82,18 @@ export default function Home() {
   };
 
   const getFullPhotoUrl = (photo) => {
-    const fileId = photo.id;
-    return `https://drive.google.com/uc?export=view&id=${fileId}`;
-  };
-
+  // Intenta primero con el webContentLink (más directo)
+  if (photo.webContentLink) {
+    // Modificar URL para que sea directo sin preview
+    return photo.webContentLink.replace('&export=download', '').replace('download', 'view');
+  }
+  // Si no existe, usa el photo.id
+  if (photo.id) {
+    return `https://drive.google.com/uc?export=view&id=${photo.id}`;
+  }
+  // Si nada funciona, retorna un placeholder
+  return photo.thumbnailLink || '';
+};
   return (
     <div className={styles.container}>
       <header className={styles.header}>
