@@ -119,7 +119,7 @@ export default function Home() {
                 {photos.map((photo, index) => (
                   <div key={index} className={styles.photoItem}>
                     <img
-                      src={selectedPhoto?.webContentLink}
+                      src={photo.webContentLink}
                       alt={photo.name}
                       className={styles.photoImg}
                       loading="lazy"
@@ -139,8 +139,8 @@ export default function Home() {
           <div className={styles.photoModalContent} onClick={(e) => e.stopPropagation()}>
             <button className={styles.closeBtn} onClick={closePhotoModal}>✕</button>
             <img
-             src={selectedPhoto?.webContentLink}
-              alt={selectedPhoto.name}
+              src={selectedPhoto?.webContentLink}
+              alt={selectedPhoto?.name}
               className={styles.photoModalImg}
             />
             <button 
