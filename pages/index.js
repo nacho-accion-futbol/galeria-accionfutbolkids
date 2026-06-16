@@ -82,21 +82,15 @@ export default function Home() {
   };
 
   const getFullPhotoUrl = (photo) => {
-    // Método 1: Usar lh3.googleusercontent.com (servidor de imágenes de Google)
     if (photo.id) {
       return `https://lh3.googleusercontent.com/d/${photo.id}`;
     }
-    
-    // Método 2: Fallback a webContentLink
     if (photo.webContentLink) {
       return photo.webContentLink;
     }
-    
-    // Método 3: Fallback a thumbnailLink
     if (photo.thumbnailLink) {
       return photo.thumbnailLink;
     }
-    
     return '';
   };
 
@@ -104,6 +98,13 @@ export default function Home() {
     <div className={styles.container}>
       <header className={styles.header}>
         <div className={styles.headerContent}>
+          {/* LOGO DEL ESCUDO - NUEVO */}
+          <img 
+            src="https://drive.google.com/uc?export=view&id=11HJA1eV1bnmnlC0swk2vMplHVB5vvCyy" 
+            alt="Acción Fútbol" 
+            className={styles.logo}
+          />
+          
           <h1 className={styles.title}>ACCIÓN FÚTBOL</h1>
           <p className={styles.subtitle}>Galería de eventos y entrenamientos</p>
         </div>
@@ -189,7 +190,6 @@ export default function Home() {
               />
             </div>
 
-            {/* Navegación entre fotos */}
             <div className={styles.photoNavigation}>
               <button 
                 className={styles.navBtn}
@@ -210,7 +210,6 @@ export default function Home() {
               </button>
             </div>
 
-            {/* Info y descarga */}
             <div className={styles.photoInfo}>
               <p className={styles.photoName}>{selectedPhoto?.name}</p>
               <button 
