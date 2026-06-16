@@ -73,7 +73,6 @@ export default function Home() {
                     background: event.gradient,
                   }}
                 >
-                  <p className={styles.cardDate}>{event.date}</p>
                   <h3 className={styles.cardTitle}>{event.date}</h3>
                 </div>
                 <div className={styles.cardFooter}>
@@ -96,7 +95,6 @@ export default function Home() {
         <div className={styles.modal} onClick={closeModal}>
           <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
             <button className={styles.closeBtn} onClick={closeModal}>✕</button>
-            <h2 className={styles.modalTitle}>{selectedEvent.title}</h2>
             <p className={styles.modalDate}>{selectedEvent.date}</p>
 
             {photoLoading ? (
