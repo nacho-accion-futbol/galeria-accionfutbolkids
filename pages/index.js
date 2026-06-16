@@ -58,6 +58,11 @@ export default function Home() {
     link.click();
   };
 
+  const getFullPhotoUrl = (photo) => {
+    const fileId = photo.id;
+    return `https://drive.google.com/uc?export=view&id=${fileId}`;
+  };
+
   return (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -139,7 +144,7 @@ export default function Home() {
           <div className={styles.photoModalContent} onClick={(e) => e.stopPropagation()}>
             <button className={styles.closeBtn} onClick={closePhotoModal}>✕</button>
             <img
-              src={selectedPhoto?.thumbnailLink}
+              src={getFullPhotoUrl(selectedPhoto)}
               alt={selectedPhoto?.name}
               className={styles.photoModalImg}
             />
