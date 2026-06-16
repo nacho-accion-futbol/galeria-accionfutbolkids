@@ -82,17 +82,15 @@ export default function Home() {
   };
 
   const getFullPhotoUrl = (photo) => {
-  // Intenta primero con el webContentLink (más directo)
+  // Usa directamente webContentLink que es el que viene de Google Drive API
   if (photo.webContentLink) {
-    // Modificar URL para que sea directo sin preview
-    return photo.webContentLink.replace('&export=download', '').replace('download', 'view');
+    return photo.webContentLink;
   }
-  // Si no existe, usa el photo.id
-  if (photo.id) {
-    return `https://drive.google.com/uc?export=view&id=${photo.id}`;
+  // Fallback a thumbnailLink si webContentLink no existe
+  if (photo.thumbnailLink) {
+    return photo.thumbnailLink;
   }
-  // Si nada funciona, retorna un placeholder
-  return photo.thumbnailLink || '';
+  return '';
 };
   return (
     <div className={styles.container}>
