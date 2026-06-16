@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+
 .container {
   min-height: 100vh;
   background: #0a0a1a;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 .header {
@@ -23,6 +26,7 @@
   letter-spacing: 2px;
   color: #ffffff;
   text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .subtitle {
@@ -30,8 +34,9 @@
   font-size: 1rem;
   color: #ff2e93;
   letter-spacing: 1px;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .main {
@@ -46,6 +51,7 @@
   color: #888;
   padding: 3rem 2rem;
   font-size: 1.1rem;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .grid {
@@ -76,10 +82,11 @@
 
 .cardDate {
   font-size: 1.5rem;
-  font-weight: 800;
+  font-weight: 900;
   color: #ffffff;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .photosPreview {
@@ -110,9 +117,9 @@
 }
 
 .photoPreviewPlaceholder {
-  background: #252535;
+  background: linear-gradient(135deg, #252535 0%, #1a1a2e 100%);
   border-radius: 12px;
-  border: 1px dashed #444;
+  border: 1px dashed rgba(255, 46, 147, 0.2);
 }
 
 .viewButton {
@@ -122,17 +129,22 @@
   color: #ffffff;
   border: none;
   border-radius: 10px;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .viewButton:hover {
   transform: scale(1.02);
   box-shadow: 0 8px 20px rgba(255, 46, 147, 0.4);
+}
+
+.viewButton:active {
+  transform: scale(0.98);
 }
 
 .modal {
@@ -167,10 +179,11 @@
 .modalTitle {
   margin: 0 0 2rem;
   font-size: 2rem;
-  font-weight: 800;
+  font-weight: 900;
   color: #ffffff;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .closeBtn {
@@ -196,6 +209,15 @@
   background: #ff2e93;
   color: #ffffff;
   transform: scale(1.1);
+}
+
+.modalLoader,
+.modalEmpty {
+  text-align: center;
+  padding: 3rem;
+  color: #888;
+  font-size: 1.1rem;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .photoGrid {
@@ -294,6 +316,7 @@
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .navBtn:hover:not(:disabled) {
@@ -312,11 +335,12 @@
 .photoCounter {
   color: #ff2e93;
   font-size: 1.1rem;
-  font-weight: 800;
+  font-weight: 900;
   min-width: 80px;
   text-align: center;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .photoInfo {
@@ -336,6 +360,7 @@
   max-width: 500px;
   word-break: break-word;
   opacity: 0.8;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .downloadBtn {
@@ -351,11 +376,16 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
   box-shadow: 0 8px 20px rgba(255, 46, 147, 0.3);
+  font-family: 'Montserrat', sans-serif;
 }
 
 .downloadBtn:hover {
   transform: translateY(-3px);
   box-shadow: 0 12px 30px rgba(255, 46, 147, 0.5);
+}
+
+.downloadBtn:active {
+  transform: translateY(-1px);
 }
 
 @keyframes fadeIn {
@@ -374,8 +404,27 @@
   }
 }
 
+.modalContent::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modalContent::-webkit-scrollbar-track {
+  background: rgba(255, 46, 147, 0.05);
+  border-radius: 10px;
+}
+
+.modalContent::-webkit-scrollbar-thumb {
+  background: #ff2e93;
+  border-radius: 10px;
+}
+
+.modalContent::-webkit-scrollbar-thumb:hover {
+  background: #d9196d;
+}
+
 @media (max-width: 768px) {
   .title { font-size: 2.2rem; }
+  .subtitle { font-size: 0.9rem; }
   .grid { grid-template-columns: 1fr; gap: 24px; }
   .card { padding: 20px; gap: 16px; }
   .cardDate { font-size: 1.2rem; }
