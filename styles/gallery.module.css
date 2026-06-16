@@ -1,58 +1,35 @@
 .container {
   min-height: 100vh;
-  background: #f5f5f5;
+  background: #0a0a0a;
 }
 
 .header {
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
   color: white;
   padding: 3rem 2rem;
   text-align: center;
-}
-
-.headerContent {
-  max-width: 1200px;
-  margin: 0 auto;
+  border-bottom: 2px solid #ff2e93;
 }
 
 .title {
   margin: 0;
   font-size: 2.5rem;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: 0.5px;
+  color: #ffffff;
 }
 
 .subtitle {
   margin: 0.5rem 0 0;
   font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: #ff2e93;
   letter-spacing: 0.3px;
-}
-
-.main {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 3rem 2rem;
-}
-
-.loader,
-.empty {
-  text-align: center;
-  color: #666;
-  padding: 2rem;
-  font-size: 1.1rem;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
-  margin-bottom: 2rem;
+  font-weight: 600;
 }
 
 .card {
-  background: white;
-  border: 0.5px solid #e0e0e0;
+  background: #1a1a1a;
+  border: 1px solid #333333;
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
@@ -60,8 +37,9 @@
 }
 
 .card:hover {
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 12px 24px rgba(255, 46, 147, 0.15);
   transform: translateY(-2px);
+  border-color: #ff2e93;
 }
 
 .cardHeader {
@@ -71,63 +49,41 @@
   flex-direction: column;
   justify-content: flex-end;
   color: white;
-}
-
-.cardDate {
-  margin: 0;
-  font-size: 0.85rem;
-  opacity: 0.9;
-  font-weight: 400;
+  background: linear-gradient(135deg, #ff2e93 0%, #d9196d 100%);
 }
 
 .cardTitle {
   margin: 8px 0 0;
   font-size: 1.1rem;
-  font-weight: 500;
-}
-
-.cardFooter {
-  padding: 1rem;
-}
-
-.placeholders {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  margin-bottom: 12px;
-}
-
-.placeholder {
-  aspect-ratio: 1;
-  background: #f0f0f0;
-  border-radius: 4px;
+  font-weight: 700;
+  color: #ffffff;
 }
 
 .viewButton {
   width: 100%;
   padding: 10px;
   background: transparent;
-  border: 0.5px solid #ddd;
+  border: 1px solid #ff2e93;
   border-radius: 8px;
   font-size: 0.85rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
+  color: #ff2e93;
 }
 
 .viewButton:hover {
-  border-color: #999;
-  background: #fafafa;
+  background: #ff2e93;
+  color: #ffffff;
 }
 
-/* MODAL GALERÍAS */
 .modal {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.95);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -137,8 +93,9 @@
 }
 
 .modalContent {
-  background: white;
+  background: #1a1a1a;
   border-radius: 12px;
+  border: 1px solid #333333;
   padding: 2rem;
   max-width: 900px;
   width: 100%;
@@ -156,7 +113,7 @@
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
-  color: #666;
+  color: #999;
   padding: 0;
   width: 32px;
   height: 32px;
@@ -168,27 +125,15 @@
 }
 
 .closeBtn:hover {
-  color: #000;
-  background: #f0f0f0;
-}
-
-.modalTitle {
-  margin: 0 0 0.5rem;
-  font-size: 1.5rem;
-  font-weight: 500;
+  color: #ff2e93;
+  background: rgba(255, 46, 147, 0.1);
 }
 
 .modalDate {
   margin: 0 0 1.5rem;
-  color: #666;
+  color: #ff2e93;
   font-size: 0.95rem;
-}
-
-.modalLoader,
-.modalEmpty {
-  text-align: center;
-  padding: 2rem;
-  color: #666;
+  font-weight: 600;
 }
 
 .photoGrid {
@@ -201,7 +146,8 @@
   aspect-ratio: 1;
   overflow: hidden;
   border-radius: 8px;
-  background: #f0f0f0;
+  background: #252525;
+  border: 1px solid #333333;
 }
 
 .photoImg {
@@ -216,14 +162,13 @@
   transform: scale(1.05);
 }
 
-/* MODAL FOTO AMPLIADA */
 .photoModal {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.95);
+  background: rgba(0, 0, 0, 0.98);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -243,7 +188,6 @@
   animation: slideUp 0.3s ease;
 }
 
-/* Contenedor de la imagen */
 .photoContainer {
   display: flex;
   align-items: center;
@@ -253,6 +197,7 @@
   background: rgba(0, 0, 0, 0.3);
   border-radius: 12px;
   padding: 20px;
+  border: 1px solid #333333;
 }
 
 .photoModalImg {
@@ -262,10 +207,9 @@
   height: auto;
   object-fit: contain;
   border-radius: 8px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 40px rgba(255, 46, 147, 0.2);
 }
 
-/* Navegación entre fotos */
 .photoNavigation {
   display: flex;
   align-items: center;
@@ -277,35 +221,36 @@
 
 .navBtn {
   padding: 10px 16px;
-  background: rgba(255, 255, 255, 0.15);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid #ff2e93;
   border-radius: 6px;
   cursor: pointer;
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 600;
   transition: all 0.2s;
 }
 
 .navBtn:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.25);
-  border-color: rgba(255, 255, 255, 0.5);
+  background: #ff2e93;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(255, 46, 147, 0.3);
 }
 
 .navBtn:disabled {
-  opacity: 0.4;
+  opacity: 0.3;
   cursor: not-allowed;
+  border-color: #555555;
 }
 
 .photoCounter {
-  color: white;
+  color: #ff2e93;
   font-size: 0.95rem;
-  font-weight: 500;
+  font-weight: 700;
   min-width: 60px;
   text-align: center;
 }
 
-/* Info y descarga */
 .photoInfo {
   display: flex;
   flex-direction: column;
@@ -317,7 +262,7 @@
 
 .photoName {
   margin: 0;
-  color: white;
+  color: #ffffff;
   font-size: 0.95rem;
   text-align: center;
   max-width: 500px;
@@ -327,50 +272,25 @@
 
 .downloadBtn {
   padding: 12px 32px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: linear-gradient(135deg, #ff2e93 0%, #d9196d 100%);
+  color: #ffffff;
   border: none;
   border-radius: 8px;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.3s;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 4px 15px rgba(255, 46, 147, 0.4);
 }
 
 .downloadBtn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+  box-shadow: 0 6px 20px rgba(255, 46, 147, 0.6);
 }
 
-.downloadBtn:active {
-  transform: translateY(0);
-}
-
-/* Botón cerrar en modal foto */
-.photoModal .closeBtn {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: rgba(255, 255, 255, 0.15);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  z-index: 100;
-}
-
-.photoModal .closeBtn:hover {
-  background: rgba(255, 255, 255, 0.25);
-  color: white;
-}
-
-/* Animaciones */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes slideUp {
@@ -384,64 +304,8 @@
   }
 }
 
-/* Responsive */
 @media (max-width: 768px) {
-  .title {
-    font-size: 1.8rem;
-  }
-
-  .subtitle {
-    font-size: 0.9rem;
-  }
-
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  .modalContent {
-    padding: 1.5rem;
-    max-height: 90vh;
-  }
-
-  .photoGrid {
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 8px;
-  }
-
-  .photoModalContent {
-    gap: 15px;
-  }
-
-  .photoContainer {
-    padding: 15px;
-  }
-
-  .photoModalImg {
-    max-height: 50vh;
-  }
-
-  .photoNavigation {
-    gap: 10px;
-    padding: 0 10px;
-    flex-wrap: wrap;
-  }
-
-  .navBtn {
-    padding: 8px 12px;
-    font-size: 0.8rem;
-  }
-
-  .photoCounter {
-    font-size: 0.9rem;
-  }
-
-  .photoName {
-    font-size: 0.85rem;
-  }
-
-  .downloadBtn {
-    padding: 10px 24px;
-    font-size: 0.9rem;
-  }
+  .title { font-size: 1.8rem; }
+  .grid { grid-template-columns: 1fr; gap: 16px; }
+  .photoGrid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
 }
