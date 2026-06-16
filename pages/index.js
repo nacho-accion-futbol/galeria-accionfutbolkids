@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import styles from '../styles/gallery.module.css';
 
 export default function Home() {
@@ -10,6 +9,7 @@ export default function Home() {
   const [photoLoading, setPhotoLoading] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(null);
+  const [previewPhotos, setPreviewPhotos] = useState({});
 
   useEffect(() => {
     fetchEvents();
@@ -21,9 +21,27 @@ export default function Home() {
       const data = await response.json();
       setEvents(data);
       setLoading(false);
+      
+      // Cargar fotos preview para cada evento
+      data.forEach((event, index) => {
+        loadPreviewPhotos(event, index);
+      });
     } catch (error) {
       console.error('Error fetching events:', error);
       setLoading(false);
+    }
+  };
+
+  const loadPreviewPhotos = async (event, eventIndex) => {
+    try {
+      const response = await fetch(`/api/photos?folderId=${event.folderId}`);
+      const data = await response.json();
+      setPreviewPhotos((prev) => ({
+        ...prev,
+        [eventIndex]: data.slice(0, 3),
+      }));
+    } catch (error) {
+      console.error('Error loading preview photos:', error);
     }
   };
 
@@ -81,15 +99,22 @@ export default function Home() {
     link.click();
   };
 
+  const getPhotoUrl = (photo) => {
+    if (photo.id) {
+      return `https://lh3.googleusercontent.com/d/${photo.id}=w500-h500`;
+    }
+    if (photo.webContentLink) {
+      return photo.webContentLink;
+    }
+    return '';
+  };
+
   const getFullPhotoUrl = (photo) => {
     if (photo.id) {
       return `https://lh3.googleusercontent.com/d/${photo.id}`;
     }
     if (photo.webContentLink) {
       return photo.webContentLink;
-    }
-    if (photo.thumbnailLink) {
-      return photo.thumbnailLink;
     }
     return '';
   };
@@ -110,38 +135,49 @@ export default function Home() {
           <div className={styles.empty}>No hay eventos disponibles</div>
         ) : (
           <div className={styles.grid}>
-            {events.map((event, index) => (
-              <div
-                key={index}
-                className={styles.card}
-                onClick={() => fetchPhotos(event)}
-              >
-                <div className={styles.cardDate}>{event.date}</div>
+            {events.map((event, index) => {
+              const eventPreviewPhotos = previewPhotos[index] || [];
+              return (
+                <div
+                  key={index}
+                  className={styles.card}
+                  onClick={() => fetchPhotos(event)}
+                >
+                  <div className={styles.cardDate}>{event.date}</div>
 
-                <div className={styles.photosPreview}>
-                  {photos.slice(0, 3).map((photo, photoIndex) => (
-                    <div key={photoIndex} className={styles.photoPreviewItem}>
-                      <img
-                        src={photo.thumbnailLink}
-                        alt={`Preview ${photoIndex + 1}`}
-                        className={styles.photoPreviewImg}
-                      />
-                    </div>
-                  ))}
-                  {photos.length === 0 && (
-                    <>
-                      <div className={styles.photoPreviewPlaceholder}></div>
-                      <div className={styles.photoPreviewPlaceholder}></div>
-                      <div className={styles.photoPreviewPlaceholder}></div>
-                    </>
-                  )}
+                  <div className={styles.photosPreview}>
+                    {eventPreviewPhotos && eventPreviewPhotos.length > 0 ? (
+                      eventPreviewPhotos.map((photo, photoIndex) => (
+                        <div key={photoIndex} className={styles.photoPreviewItem}>
+                          <img
+                            src={getPhotoUrl(photo)}
+                            alt={`Preview ${photoIndex + 1}`}
+                            className={styles.photoPreviewImg}
+                            onError={(e) => {
+                              e.target.src = `https://via.placeholder.com/200?text=Foto+${photoIndex + 1}`;
+                            }}
+                          />
+                        </div>
+                      ))
+                    ) : null}
+                    {eventPreviewPhotos.length < 3 && (
+                      <>
+                        {[...Array(3 - eventPreviewPhotos.length)].map((_, i) => (
+                          <div
+                            key={`placeholder-${i}`}
+                            className={styles.photoPreviewPlaceholder}
+                          ></div>
+                        ))}
+                      </>
+                    )}
+                  </div>
+
+                  <button className={styles.viewButton}>
+                    Ver galería ({eventPreviewPhotos.length} fotos)
+                  </button>
                 </div>
-
-                <button className={styles.viewButton}>
-                  Ver galería
-                </button>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </main>
@@ -161,12 +197,15 @@ export default function Home() {
                 {photos.map((photo, index) => (
                   <div key={index} className={styles.photoItem}>
                     <img
-                      src={photo.thumbnailLink}
+                      src={getPhotoUrl(photo)}
                       alt={photo.name}
                       className={styles.photoImg}
                       loading="lazy"
                       onClick={() => openPhotoModal(photo, index)}
                       style={{ cursor: 'pointer' }}
+                      onError={(e) => {
+                        e.target.src = `https://via.placeholder.com/150?text=Foto`;
+                      }}
                     />
                   </div>
                 ))}
