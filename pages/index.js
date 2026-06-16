@@ -9,6 +9,7 @@ export default function Home() {
   const [photos, setPhotos] = useState([]);
   const [photoLoading, setPhotoLoading] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
+  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(null);
 
   useEffect(() => {
     fetchEvents();
@@ -49,6 +50,28 @@ export default function Home() {
 
   const closePhotoModal = () => {
     setSelectedPhoto(null);
+    setCurrentPhotoIndex(null);
+  };
+
+  const openPhotoModal = (photo, index) => {
+    setSelectedPhoto(photo);
+    setCurrentPhotoIndex(index);
+  };
+
+  const goToPreviousPhoto = (e) => {
+    e.stopPropagation();
+    if (currentPhotoIndex > 0) {
+      const previousPhoto = photos[currentPhotoIndex - 1];
+      openPhotoModal(previousPhoto, currentPhotoIndex - 1);
+    }
+  };
+
+  const goToNextPhoto = (e) => {
+    e.stopPropagation();
+    if (currentPhotoIndex < photos.length - 1) {
+      const nextPhoto = photos[currentPhotoIndex + 1];
+      openPhotoModal(nextPhoto, currentPhotoIndex + 1);
+    }
   };
 
   const downloadPhoto = (photo) => {
@@ -128,7 +151,7 @@ export default function Home() {
                       alt={photo.name}
                       className={styles.photoImg}
                       loading="lazy"
-                      onClick={() => setSelectedPhoto(photo)}
+                      onClick={() => openPhotoModal(photo, index)}
                       style={{ cursor: 'pointer' }}
                     />
                   </div>
@@ -143,17 +166,46 @@ export default function Home() {
         <div className={styles.photoModal} onClick={closePhotoModal}>
           <div className={styles.photoModalContent} onClick={(e) => e.stopPropagation()}>
             <button className={styles.closeBtn} onClick={closePhotoModal}>✕</button>
-            <img
-              src={getFullPhotoUrl(selectedPhoto)}
-              alt={selectedPhoto?.name}
-              className={styles.photoModalImg}
-            />
-            <button 
-              className={styles.downloadBtn}
-              onClick={() => downloadPhoto(selectedPhoto)}
-            >
-              ⬇️ Descargar
-            </button>
+            
+            <div className={styles.photoContainer}>
+              <img
+                src={getFullPhotoUrl(selectedPhoto)}
+                alt={selectedPhoto?.name}
+                className={styles.photoModalImg}
+              />
+            </div>
+
+            {/* Navegación entre fotos */}
+            <div className={styles.photoNavigation}>
+              <button 
+                className={styles.navBtn}
+                onClick={goToPreviousPhoto}
+                disabled={currentPhotoIndex === 0}
+              >
+                ← Anterior
+              </button>
+              <span className={styles.photoCounter}>
+                {currentPhotoIndex + 1} / {photos.length}
+              </span>
+              <button 
+                className={styles.navBtn}
+                onClick={goToNextPhoto}
+                disabled={currentPhotoIndex === photos.length - 1}
+              >
+                Siguiente →
+              </button>
+            </div>
+
+            {/* Info y descarga */}
+            <div className={styles.photoInfo}>
+              <p className={styles.photoName}>{selectedPhoto?.name}</p>
+              <button 
+                className={styles.downloadBtn}
+                onClick={() => downloadPhoto(selectedPhoto)}
+              >
+                ⬇️ Descargar foto
+              </button>
+            </div>
           </div>
         </div>
       )}
