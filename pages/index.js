@@ -98,15 +98,8 @@ export default function Home() {
     <div className={styles.container}>
       <header className={styles.header}>
         <div className={styles.headerContent}>
-          {/* LOGO DEL ESCUDO - NUEVO */}
-          <img 
-            src="https://drive.google.com/uc?export=view&id=11HJA1eV1bnmnlC0swk2vMplHVB5vvCyy" 
-            alt="Acción Fútbol" 
-            className={styles.logo}
-          />
-          
           <h1 className={styles.title}>ACCIÓN FÚTBOL</h1>
-          <p className={styles.subtitle}>Galería de eventos y entrenamientos</p>
+          <p className={styles.subtitle}>Galería de eventos</p>
         </div>
       </header>
 
@@ -123,24 +116,30 @@ export default function Home() {
                 className={styles.card}
                 onClick={() => fetchPhotos(event)}
               >
-                <div
-                  className={styles.cardHeader}
-                  style={{
-                    background: event.gradient,
-                  }}
-                >
-                  <h3 className={styles.cardTitle}>{event.date}</h3>
+                <div className={styles.cardDate}>{event.date}</div>
+
+                <div className={styles.photosPreview}>
+                  {photos.slice(0, 3).map((photo, photoIndex) => (
+                    <div key={photoIndex} className={styles.photoPreviewItem}>
+                      <img
+                        src={photo.thumbnailLink}
+                        alt={`Preview ${photoIndex + 1}`}
+                        className={styles.photoPreviewImg}
+                      />
+                    </div>
+                  ))}
+                  {photos.length === 0 && (
+                    <>
+                      <div className={styles.photoPreviewPlaceholder}></div>
+                      <div className={styles.photoPreviewPlaceholder}></div>
+                      <div className={styles.photoPreviewPlaceholder}></div>
+                    </>
+                  )}
                 </div>
-                <div className={styles.cardFooter}>
-                  <div className={styles.placeholders}>
-                    <div className={styles.placeholder}></div>
-                    <div className={styles.placeholder}></div>
-                    <div className={styles.placeholder}></div>
-                  </div>
-                  <button className={styles.viewButton}>
-                    Ver fotos →
-                  </button>
-                </div>
+
+                <button className={styles.viewButton}>
+                  Ver galería
+                </button>
               </div>
             ))}
           </div>
@@ -151,7 +150,7 @@ export default function Home() {
         <div className={styles.modal} onClick={closeModal}>
           <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
             <button className={styles.closeBtn} onClick={closeModal}>✕</button>
-            <p className={styles.modalDate}>{selectedEvent.date}</p>
+            <p className={styles.modalTitle}>{selectedEvent.date}</p>
 
             {photoLoading ? (
               <div className={styles.modalLoader}>Cargando fotos...</div>
