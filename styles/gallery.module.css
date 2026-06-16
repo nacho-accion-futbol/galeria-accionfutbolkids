@@ -7,7 +7,6 @@
   background: #0a0a1a;
 }
 
-/* HEADER */
 .header {
   background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 100%);
   color: white;
@@ -39,22 +38,12 @@
   text-transform: uppercase;
 }
 
-/* MAIN */
 .main {
   max-width: 1200px;
   margin: 0 auto;
   padding: 4rem 2rem;
 }
 
-.loader,
-.empty {
-  text-align: center;
-  color: #888;
-  padding: 3rem 2rem;
-  font-size: 1.1rem;
-}
-
-/* GRID DE EVENTOS */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -62,7 +51,6 @@
   margin-bottom: 2rem;
 }
 
-/* TARJETAS */
 .card {
   background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1f 100%);
   border: 1px solid rgba(255, 46, 147, 0.15);
@@ -82,7 +70,6 @@
   box-shadow: 0 20px 40px rgba(255, 46, 147, 0.2);
 }
 
-/* Fecha en la tarjeta */
 .cardDate {
   font-size: 1.5rem;
   font-weight: 800;
@@ -91,7 +78,6 @@
   letter-spacing: 1px;
 }
 
-/* 3 FOTOS PREVIEW */
 .photosPreview {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -125,7 +111,6 @@
   border: 1px dashed #444;
 }
 
-/* BOTÓN VER GALERÍA */
 .viewButton {
   width: 100%;
   padding: 14px 24px;
@@ -146,11 +131,6 @@
   box-shadow: 0 8px 20px rgba(255, 46, 147, 0.4);
 }
 
-.viewButton:active {
-  transform: scale(0.98);
-}
-
-/* MODAL GALERÍAS */
 .modal {
   position: fixed;
   top: 0;
@@ -214,15 +194,6 @@
   transform: scale(1.1);
 }
 
-.modalLoader,
-.modalEmpty {
-  text-align: center;
-  padding: 3rem;
-  color: #888;
-  font-size: 1.1rem;
-}
-
-/* GRID DE FOTOS EN MODAL */
 .photoGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -249,7 +220,6 @@
   transform: scale(1.08);
 }
 
-/* MODAL FOTO AMPLIADA */
 .photoModal {
   position: fixed;
   top: 0;
@@ -299,7 +269,6 @@
   box-shadow: 0 20px 60px rgba(255, 46, 147, 0.25);
 }
 
-/* NAVEGACIÓN */
 .photoNavigation {
   display: flex;
   align-items: center;
@@ -346,7 +315,6 @@
   letter-spacing: 0.5px;
 }
 
-/* INFO Y DESCARGA */
 .photoInfo {
   display: flex;
   flex-direction: column;
@@ -386,18 +354,9 @@
   box-shadow: 0 12px 30px rgba(255, 46, 147, 0.5);
 }
 
-.downloadBtn:active {
-  transform: translateY(-1px);
-}
-
-/* ANIMACIONES */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes slideUp {
@@ -411,97 +370,17 @@
   }
 }
 
-/* SCROLL */
-.modalContent::-webkit-scrollbar {
-  width: 8px;
-}
-
-.modalContent::-webkit-scrollbar-track {
-  background: rgba(255, 46, 147, 0.05);
-  border-radius: 10px;
-}
-
-.modalContent::-webkit-scrollbar-thumb {
-  background: #ff2e93;
-  border-radius: 10px;
-}
-
-.modalContent::-webkit-scrollbar-thumb:hover {
-  background: #d9196d;
-}
-
-/* RESPONSIVE */
 @media (max-width: 768px) {
-  .title {
-    font-size: 2.2rem;
-  }
-
-  .subtitle {
-    font-size: 0.9rem;
-  }
-
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .card {
-    padding: 20px;
-    gap: 16px;
-  }
-
-  .cardDate {
-    font-size: 1.2rem;
-  }
-
-  .photosPreview {
-    aspect-ratio: auto;
-    gap: 10px;
-  }
-
-  .photoGrid {
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 12px;
-  }
-
-  .modalContent {
-    padding: 1.5rem;
-    max-height: 90vh;
-  }
-
-  .modalTitle {
-    font-size: 1.5rem;
-  }
-
-  .photoModalContent {
-    gap: 16px;
-  }
-
-  .photoContainer {
-    padding: 16px;
-  }
-
-  .photoModalImg {
-    max-height: 50vh;
-  }
-
-  .photoNavigation {
-    gap: 12px;
-    padding: 0 10px;
-    flex-wrap: wrap;
-  }
-
-  .navBtn {
-    padding: 10px 16px;
-    font-size: 0.85rem;
-  }
-
-  .photoCounter {
-    font-size: 0.9rem;
-  }
-
-  .downloadBtn {
-    padding: 12px 28px;
-    font-size: 0.9rem;
-  }
+  .title { font-size: 2.2rem; }
+  .grid { grid-template-columns: 1fr; gap: 24px; }
+  .card { padding: 20px; gap: 16px; }
+  .cardDate { font-size: 1.2rem; }
+  .photosPreview { aspect-ratio: auto; gap: 10px; }
+  .photoGrid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 12px; }
+  .modalContent { padding: 1.5rem; max-height: 90vh; }
+  .modalTitle { font-size: 1.5rem; }
+  .photoContainer { padding: 16px; }
+  .photoModalImg { max-height: 50vh; }
+  .navBtn { padding: 10px 16px; font-size: 0.85rem; }
+  .downloadBtn { padding: 12px 28px; font-size: 0.9rem; }
 }
