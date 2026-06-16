@@ -139,7 +139,7 @@ export default function Home() {
           <div className={styles.photoModalContent} onClick={(e) => e.stopPropagation()}>
             <button className={styles.closeBtn} onClick={closePhotoModal}>✕</button>
             <img
-              src={selectedPhoto?.webContentLink + '&export=download'}
+              src={selectedPhoto?.thumbnailLink}
               alt={selectedPhoto?.name}
               className={styles.photoModalImg}
             />
